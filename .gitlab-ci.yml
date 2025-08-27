@@ -4,6 +4,8 @@ stages:
 deploy-job:
   stage: deploy
   script:
+    - mkdir -p va_kafka_data
+    - chmod 777 va_kafka_data
     - docker-compose up -d
   rules:
     - if: $CI_COMMIT_BRANCH == "master"
