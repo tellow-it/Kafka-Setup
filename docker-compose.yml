@@ -5,7 +5,7 @@ services:
     ports:
       - "9092:9092"
     volumes:
-      - /va_kafka_data:/tmp/kafka-logs
+      - /docker_data/va_kafka_data:/tmp/kafka-logs
     environment:
       # Configure listeners for both docker and host communication
       KAFKA_LISTENERS: CONTROLLER://localhost:9091,HOST://0.0.0.0:9092,DOCKER://0.0.0.0:9093
@@ -22,7 +22,6 @@ services:
       # Required for a single node cluster
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_LOG_DIRS: /tmp/kafka-logs
-    user: "1000:1000"
 
   kafka-ui:
     image: kafbat/kafka-ui:main
