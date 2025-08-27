@@ -1,0 +1,9 @@
+stages:
+  - deploy
+
+deploy-job:
+  stage: deploy
+  script:
+    - docker-compose up -d
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
