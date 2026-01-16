@@ -56,17 +56,12 @@ services:
     restart: unless-stopped
 
   kafka-jmx-exporter:
-    image: bitnami/jmx-exporter:latest
+    image: $IMAGE_TAG
     container_name: kafka-jmx-exporter
     depends_on:
       - kafka
     ports:
       - "${KAFKA_JMX_PORT}:5556"
-    volumes:
-      - ./jmx-exporter/kafka-jmx.yml:/etc/jmx-exporter/config.yml
-    command:
-      - "5556"
-      - "/etc/jmx-exporter/config.yml"
     restart: unless-stopped
 
 volumes:

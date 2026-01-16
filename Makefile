@@ -5,6 +5,9 @@ help:
 	@echo "  stop - Stop the development environment"
 	@echo "  clean - Clean up the development environment"
 
+build:
+	sudo docker build -t kafka-jmx-exporter . 
+
 run:
 	sudo docker compose -f docker-compose.dev.yml up -d
 

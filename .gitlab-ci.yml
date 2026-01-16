@@ -1,5 +1,21 @@
 stages:
+  - build
   - deploy
+
+variables:
+  IMAGE_TAG: kafka_jmx_exporter:${CI_COMMIT_SHORT_SHA}
+
+# === BUILD: PROD ===
+build-prod:
+  stage: build
+  script:
+    - docker build -t $IMAGE_TAG .
+  environment: production
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  tags:
+    - prod_ms
+
   
 # === DEPLOY: PROD ===
 deploy-prod:
