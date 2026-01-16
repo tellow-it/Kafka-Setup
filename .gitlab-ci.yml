@@ -5,8 +5,6 @@ stages:
 deploy-prod:
   stage: deploy
   script:
-    - ls -la ./jmx-exporter/
-    - file ./jmx-exporter/kafka-jmx.yml
     - docker compose -f docker-compose.yml up -d
   environment: production
   rules:
