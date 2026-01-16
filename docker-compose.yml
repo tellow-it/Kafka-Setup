@@ -63,7 +63,7 @@ services:
     ports:
       - "${KAFKA_JMX_PORT}:5556"
     volumes:
-      - ./jmx-exporter/kafka-jmx.yml:/etc/jmx-exporter/config.yml
+      - ${PWD}/jmx-exporter/kafka-jmx.yml:/etc/jmx-exporter/config.yml
     command:
       - "5556"
       - "/etc/jmx-exporter/config.yml"
