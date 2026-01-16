@@ -1,9 +1,13 @@
 stages:
   - deploy
-
-deploy-job:
+  
+# === DEPLOY: PROD ===
+deploy-prod:
   stage: deploy
   script:
-    - docker-compose up -d
+    - docker compose -f docker-compose.yml up -d
+  environment: production
   rules:
     - if: $CI_COMMIT_BRANCH == "master"
+  tags:
+    - prod_ms

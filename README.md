@@ -25,6 +25,7 @@
 ├── docker-compose.yml          # Production конфигурация
 ├── docker-compose.dev.yml      # Development конфигурация
 ├── docker-compose.test.yml     # Test конфигурация
+├── .gitlab-ci.yml              # CI/CD конфигурация для GitLab
 ├── Makefile                    # Команды для управления окружением
 ├── jmx-exporter/
 │   └── kafka-jmx.yml          # Конфигурация JMX экспортера
@@ -219,4 +220,22 @@ docker logs kafka-jmx-exporter
 # Логи всех сервисов
 docker compose -f docker-compose.dev.yml logs -f
 ```
+
+## CI/CD
+
+Проект использует GitLab CI/CD для автоматического развертывания.
+
+### Конфигурация
+
+CI/CD конфигурация находится в файле `.gitlab-ci.yml` и включает следующие этапы:
+
+- **deploy** - автоматическое развертывание в production окружение
+
+### Автоматическое развертывание
+
+При коммите в ветку `master` автоматически запускается деплой в production окружение:
+
+1. Выполняется команда `docker compose -f docker-compose.yml up -d`
+2. Развертывание происходит на сервере с тегом `prod_ms`
+3. Окружение помечается как `production`
 
